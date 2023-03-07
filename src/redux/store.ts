@@ -1,10 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { characterApi } from "./services/characterApi";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({ character: characterApi.reducer });
 
 export const setupStore = () => {
     return configureStore({
-        reducer: rootReducer,
+        reducer: { [characterApi.reducerPath]: characterApi.reducer },
+        middleware: (getDefaultMiddleware) => {
+            return getDefaultMiddleware().concat(characterApi.middleware);
+        },
     });
 };
 

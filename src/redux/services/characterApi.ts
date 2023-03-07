@@ -6,7 +6,7 @@ export const characterApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "https://rickandmortyapi.com/api" }),
     endpoints: (builder) => ({
         getAllCharacters: builder.query<Info<Character>, string>({
-            query: (params) => `character{params}`,
+            query: (params) => `character${params}`,
         }),
     }),
 });
