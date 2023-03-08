@@ -18,7 +18,10 @@ export const CharacterCard: FC<Props> = ({ character }) => {
                 name={character.name}
                 species={character.species}
             />
-            <Link className='link' to={`character/${character.id}`} />
+            <Link
+                className='link'
+                to={`character/${character.id}`}
+            />
         </div>
     )
 }
