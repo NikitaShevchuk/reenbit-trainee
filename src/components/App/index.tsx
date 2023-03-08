@@ -1,3 +1,4 @@
+import { Characters } from "../Characters"
 import { Logo } from "../Logo"
 import { Search } from "../Search"
 
@@ -6,6 +7,7 @@ export const App = () => {
         <main>
             <Logo />
             <Search />
+            <Characters />
         </main>
     )
 }
