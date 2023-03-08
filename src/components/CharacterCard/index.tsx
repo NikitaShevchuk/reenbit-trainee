@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { Image } from './Image'
 import style from './character.module.scss'
 import { Description } from './Description'
+import classNames from 'classnames'
 
 interface Props {
     character: Character
@@ -10,7 +11,7 @@ interface Props {
 
 export const CharacterCard: FC<Props> = ({ character }) => {
     return (
-        <div className={style.character}>
+        <div className={classNames(style.character, 'opacity')}>
             <Image image={character.image} />
             <Description
                 name={character.name}

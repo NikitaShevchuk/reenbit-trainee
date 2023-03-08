@@ -2,9 +2,9 @@ import { Characters } from "../Characters"
 import { Logo } from "../Logo"
 import { Search } from "../Search"
 
-export const App = () => {
+export const Main = () => {
     return (
-        <main>
+        <main className='opacity'>
             <Logo />
             <Search />
             <Characters />

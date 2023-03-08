@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const Description: FC<Props> = ({ name, species }) => {
-    console.log(style)
     return (
         <div className={style.character__description}>
             <h2 className={style.description__name}>{name}</h2>
