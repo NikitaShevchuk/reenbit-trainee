@@ -1,9 +1,10 @@
 import { Character } from '@/Types'
+import classNames from 'classnames'
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
+import { Description } from './Description'
 import { Image } from './Image'
 import style from './character.module.scss'
-import { Description } from './Description'
-import classNames from 'classnames'
 
 interface Props {
     character: Character
@@ -17,6 +18,7 @@ export const CharacterCard: FC<Props> = ({ character }) => {
                 name={character.name}
                 species={character.species}
             />
+            <Link className='link' to={`character/${character.id}`} />
         </div>
     )
 }

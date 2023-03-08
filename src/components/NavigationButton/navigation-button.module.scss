@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
+
+.button {
+    position: fixed;
+    top: 25px;
+    left: 54px;
+    display: flex;
+    align-items: center;
+    transition: all .1s ease-in-out;
+    &:hover {
+        transform: scale(1.05);
+        opacity: 0.5;
+    }
+    &__icon {
+        margin-right: 12px;
+        display: block;
+        max-width: 16px;
+    }
+    &__text {
+        font-family: 'Karla', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #000;
+    }
+}
