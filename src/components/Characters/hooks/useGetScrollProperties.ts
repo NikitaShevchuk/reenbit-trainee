@@ -1,15 +1,18 @@
+import { useAppDispatch } from '@/redux/hooks';
+import { filterSlice } from '@/redux/slices/filterSlice';
 import debounce from 'lodash.debounce';
 import React from 'react';
 import { useGetCharacters } from './useGetCharacters';
 
 export const useGetScrollProperties = () => {
-    const { characterData, setPage } = useGetCharacters();
+    const { characterData } = useGetCharacters();
     const { data: characters, isLoading, isFetching } = characterData;
 
+    const dispatch = useAppDispatch();
     const hasMore = React.useRef<boolean>(true);
     const updatePageNumber = React.useCallback(
         debounce((page) => {
-            setPage(page);
+            dispatch(filterSlice.actions.setPage(page));
         }, 400),
         []
     );

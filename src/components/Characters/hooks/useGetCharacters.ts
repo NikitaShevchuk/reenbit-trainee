@@ -1,12 +1,12 @@
+import { pageSelector } from '@/redux/selectors/filter';
 import { useGetAllCharactersQuery } from '@/redux/services/characterApi';
-import React from 'react';
+import { useAppSelector } from './../../../redux/hooks/index';
 
 export const useGetCharacters = () => {
-    const [page, setPage] = React.useState<number>(1);
+    const page = useAppSelector(pageSelector);
     const characterData = useGetAllCharactersQuery(page);
     return {
         page,
-        setPage,
         characterData
     };
 };

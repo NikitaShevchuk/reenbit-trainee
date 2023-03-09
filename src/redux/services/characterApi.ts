@@ -1,3 +1,4 @@
+import { mergeCharacters } from './utils/mergeCharacters';
 import { Character, Info } from '@/Types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getCharactersThunkAction } from './utils/getCharactersThunkAction';
@@ -12,11 +13,7 @@ export const characterApi = createApi({
             serializeQueryArgs: ({ endpointName }) => {
                 return endpointName;
             },
-            merge: (currentCache, newItems) => {
-                if (currentCache?.results && newItems?.results) {
-                    currentCache?.results.push(...newItems?.results);
-                }
-            },
+            merge: mergeCharacters,
             onQueryStarted: async (page, { dispatch, queryFulfilled }) => {
                 try {
                     const { data } = await queryFulfilled;
