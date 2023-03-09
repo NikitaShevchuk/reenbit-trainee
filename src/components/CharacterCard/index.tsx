@@ -18,10 +18,12 @@ export const CharacterCard: FC<Props> = ({ character }) => {
                 name={character.name}
                 species={character.species}
             />
-            <Link
-                className='link'
-                to={`character/${character.id}`}
-            />
+            {character.id !== 0 ?
+                <Link
+                    className='link'
+                    to={`character/${character.id}`}
+                /> : null
+            }
         </div>
     )
 }

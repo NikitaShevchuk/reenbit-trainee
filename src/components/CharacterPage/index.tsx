@@ -11,7 +11,8 @@ import style from './character-page.module.scss'
 export const CharacterPage = () => {
     const { id } = useParams()
     if (!id) return <ErrorPage />
-    const { data: character, isLoading } = useGetCharacterByIdQuery(id)
+    const { data: character, isLoading, isError } = useGetCharacterByIdQuery(id)
+    if (isError) return <ErrorPage />
     return (
         <div className={classNames(style.character, 'opacity')}>
             <NavigationButton />
