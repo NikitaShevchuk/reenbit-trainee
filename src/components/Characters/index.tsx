@@ -5,7 +5,7 @@ import { Preloader } from './Preloader'
 import style from './characters.module.scss'
 
 export const Characters = () => {
-    const { data: characters, isLoading, isError } = useGetAllCharactersQuery('')
+    const { data: characters, isLoading, isError } = useGetAllCharactersQuery('1')
     if (isError) return <ErrorPage />
     if (isLoading) return <Preloader />
     return (
