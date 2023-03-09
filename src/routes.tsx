@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
-import { Main } from './components/Main';
-import { ErrorPage } from './components/ErrorPage';
 import { CharacterPage } from './components/CharacterPage';
+import { ErrorPage } from './components/ErrorPage';
+import { Main } from './components/Main';
 
 export const routes: RouteObject[] = [
     {
