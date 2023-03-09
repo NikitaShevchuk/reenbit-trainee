@@ -1,6 +1,8 @@
 import '@assets/css/index.scss'
 import 'normalize.css'
 import ReactDOM from 'react-dom/client'
+import { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { Provider } from 'react-redux'
 import {
   createHashRouter,
@@ -15,6 +17,8 @@ const router = createHashRouter(routes);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <SkeletonTheme baseColor="#c1c1c1" highlightColor="#dcdcdc">
+      <RouterProvider router={router} />
+    </SkeletonTheme>
   </Provider>,
 )

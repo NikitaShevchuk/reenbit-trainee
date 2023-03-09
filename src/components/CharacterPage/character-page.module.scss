@@ -12,21 +12,22 @@
         max-height: 300px;
         min-height: 300px;
         min-width: 300px;
-        background-color: var(--grey);
+        background-color: #c1c1c1;
         border: 5px solid #F2F2F7;
         border-radius: 150px;
     }
     &__title {
         font-size: 4.8rem;
         margin-top: 16px;
-        margin-bottom: 48px;
+        margin-bottom: 59px;
         font-weight: 400;
     }
     &__subtitle {
         color: var(--light-grey);
         font-weight: 500;
         font-size: 2rem;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
+        line-height: 2rem;
     }
     &__information {
         padding: 15px 0;
@@ -37,6 +38,7 @@
             line-height: 1.6rem;
             font-weight: 700;
             margin: 0 0 7px 0;
+            min-width: 20%;
         }
     }
 }
