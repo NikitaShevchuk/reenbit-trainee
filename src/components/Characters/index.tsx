@@ -17,12 +17,12 @@ export const Characters = () => {
         <InfiniteScroll
             pageStart={1}
             loadMore={changePage}
-            hasMore={hasMore.current}
+            hasMore={hasMore}
             threshold={threshold}
             useCapture
         >
             <CharactersList characters={characters} />
-            {page <= (characters?.info?.pages || 42) && hasMore.current
+            {page <= (characters?.info?.pages || 42)
                 ? <Preloader ref={preloaderRef} />
                 : null
             }
