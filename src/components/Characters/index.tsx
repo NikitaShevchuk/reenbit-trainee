@@ -15,7 +15,7 @@ export const Characters = () => {
 
     return (
         <InfiniteScroll
-            pageStart={1}
+            pageStart={page}
             loadMore={changePage}
             hasMore={hasMore}
             threshold={threshold}
