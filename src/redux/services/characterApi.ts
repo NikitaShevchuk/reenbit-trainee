@@ -28,6 +28,7 @@ export const characterApi = createApi({
 
             merge: mergeCharacters,
 
+            // sort characters by a name on the client side since api doesn't support sorting
             onQueryStarted: async (charactersParams, { dispatch, queryFulfilled }) => {
                 try {
                     const { data } = await queryFulfilled;

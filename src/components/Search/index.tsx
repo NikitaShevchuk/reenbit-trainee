@@ -36,7 +36,7 @@ export const Search = () => {
         <Input
             value={searchFieldValue}
             onChange={onChange}
-            placeHolder="Find by name..."
+            placeHolder="Filter by name..."
             startIcon={{ path: searchIcon, onClick: onIconClick }}
         />
     )
