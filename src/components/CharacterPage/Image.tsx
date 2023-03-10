@@ -7,6 +7,6 @@ interface Props {
 
 export const Image: FC<Props> = ({ imageUrl }) => {
     return (
-        <img src={imageUrl} className={style.character__image} />
+        <div className={style.character__image}><img src={imageUrl} /></div>
     )
 }
