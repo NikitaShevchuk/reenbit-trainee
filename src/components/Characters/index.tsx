@@ -1,5 +1,4 @@
 import InfiniteScroll from 'react-infinite-scroller'
-import { ErrorPage } from '../ErrorPage'
 import { CharactersList } from './CharactersList'
 import { Preloader } from './Preloader'
 import { useGetCharacters } from './hooks/useGetCharacters'
@@ -10,9 +9,8 @@ export const Characters = () => {
     const { data: characters, isLoading, isError } = characterData;
     const { changePage, hasMore, threshold, preloaderRef } = useGetScrollProperties()
 
-    if (isError) return <ErrorPage />
+    if (isError) return <div className='center'>Nothing found</div>
     if (isLoading) return <Preloader />
-
     return (
         <InfiniteScroll
             pageStart={page}
@@ -22,7 +20,7 @@ export const Characters = () => {
             useCapture
         >
             <CharactersList characters={characters} />
-            {page <= (characters?.info?.pages || 42)
+            {page <= (characters?.info?.pages || 42) && characters?.info?.pages !== 1
                 ? <Preloader ref={preloaderRef} />
                 : null
             }
