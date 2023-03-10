@@ -5,13 +5,10 @@ export const useSaveScrollHeigh = (
     characters: Info<Character[]> | undefined,
     setHasMore: (hasMore: boolean) => void
 ) => {
-    const isMounted = React.useRef<boolean>(false);
-
     // scroll window when characters data is loaded and component is mounted
     React.useEffect(() => {
-        if (characters && !isMounted.current) {
+        if (characters) {
             window.scrollTo(0, Number(localStorage.getItem('scrollHeight')) || 0);
-            isMounted.current = true;
         }
         setHasMore(true);
     }, [characters]);

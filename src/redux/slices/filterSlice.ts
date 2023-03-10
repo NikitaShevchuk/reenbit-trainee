@@ -15,6 +15,9 @@ export const filterSlice = createSlice({
         },
         setSearchString: (state, action: PayloadAction<string>) => {
             state.searchString = action.payload;
+        },
+        remountScrollComponent(state) {
+            ++state.scrollComponentKey;
         }
     }
 });

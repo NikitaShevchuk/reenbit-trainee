@@ -1,4 +1,5 @@
-import { useAppDispatch } from '@/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { searchStringSelector } from '@/redux/selectors/filter'
 import { filterSlice } from '@/redux/slices/filterSlice'
 import searchIcon from '@assets/icons/search-icon.svg'
 import debounce from 'lodash.debounce'
@@ -6,11 +7,15 @@ import React from "react"
 import { Input } from "../Input"
 
 export const Search = () => {
-    const [searchFieldValue, setSearchFieldValue] = React.useState<string>("")
+    const searchString = useAppSelector(searchStringSelector)
+    const [searchFieldValue, setSearchFieldValue] = React.useState<string>(searchString)
     const dispatch = useAppDispatch()
 
     const setFirstPageOnNewSearchRequest = (searchString: string) => {
-        if (searchString && searchString.length < 4) dispatch(filterSlice.actions.setPage(1))
+        if (!searchString || searchString.length < 4) {
+            dispatch(filterSlice.actions.setPage(1))
+            dispatch(filterSlice.actions.remountScrollComponent())
+        }
     }
     const updateSearchString = React.useCallback(
         debounce((searchString: string) => {

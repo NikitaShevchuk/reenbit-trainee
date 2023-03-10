@@ -5,7 +5,7 @@ import { useGetCharacters } from './hooks/useGetCharacters'
 import { useGetScrollProperties } from './hooks/useGetScrollProperties'
 
 export const Characters = () => {
-    const { characterData, page } = useGetCharacters();
+    const { characterData, page, scrollComponentKey } = useGetCharacters();
     const { data: characters, isLoading, isError } = characterData;
     const { changePage, hasMore, threshold, preloaderRef } = useGetScrollProperties()
 
@@ -18,9 +18,13 @@ export const Characters = () => {
             hasMore={hasMore}
             threshold={threshold}
             useCapture
+            // modify the key to remount the component and reset the current page
+            // this is necessary after a new search request is added 
+            // and component need to start new pagination from page 1
+            key={scrollComponentKey}
         >
             <CharactersList characters={characters} />
-            {page <= (characters?.info?.pages || 42) && characters?.info?.pages !== 1
+            {page < (characters?.info?.pages || 42) && characters?.info?.pages !== 1
                 ? <Preloader ref={preloaderRef} />
                 : null
             }
