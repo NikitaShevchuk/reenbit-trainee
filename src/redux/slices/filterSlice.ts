@@ -2,7 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     page: 1 as number,
-    searchString: '' as string
+    searchString: '' as string,
+    scrollComponentKey: 0 as number
 } as const;
 
 export const filterSlice = createSlice({
