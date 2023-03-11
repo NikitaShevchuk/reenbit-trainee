@@ -1,24 +1,35 @@
+import { TokenResponse } from '@react-oauth/google';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { authorize } from '../thunks/authorize';
+
+interface Profile {
+    id: string;
+    email: string;
+    verified_email: boolean;
+    name: string;
+    given_name: string;
+    picture: string;
+    locale: 'en';
+}
 
 const initialState = {
-    page: 1 as number,
-    searchString: localStorage.getItem('searchString') || ('' as string),
-    scrollComponentKey: 0 as number
+    isAuthorized: false as boolean,
+    user: null as TokenResponse | null,
+    profile: null as Profile | null
 } as const;
 
-export const filterSlice = createSlice({
-    name: 'filterSlice',
+export const profileSlice = createSlice({
+    name: 'profileSlice',
     initialState,
     reducers: {
-        setPage: (state, action: PayloadAction<number>) => {
-            state.page = action.payload;
-        },
-        setSearchString: (state, action: PayloadAction<string>) => {
-            localStorage.setItem('searchString', action.payload);
-            state.searchString = action.payload;
-        },
-        remountScrollComponent(state) {
-            ++state.scrollComponentKey;
+        setUser: (state, action: PayloadAction<TokenResponse>) => {
+            state.user = action.payload;
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(authorize.fulfilled, (state, action) => {
+            state.profile = action.payload;
+            state.isAuthorized = true;
+        });
     }
 });

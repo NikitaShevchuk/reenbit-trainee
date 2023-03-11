@@ -1,15 +1,22 @@
+import { useAppDispatch } from '@/redux/hooks';
+import { profileSlice } from '@/redux/slices/profileSlice';
+import { authorize } from '@/redux/thunks/authorize';
 import googleIcon from '@assets/icons/google-icon.svg';
 import { TokenResponse, useGoogleLogin } from '@react-oauth/google';
+import React from 'react';
 import { Button } from '../Button';
 import style from './login.module.scss';
-import React from 'react';
 
 type ErrorType = Pick<TokenResponse, "error" | "error_description" | "error_uri"> | null
 
 export const Login = () => {
     const [error, setError] = React.useState<ErrorType>(null)
+    const dispatch = useAppDispatch()
     const login = useGoogleLogin({
-        onSuccess: (codeResponse) => console.log(codeResponse),
+        onSuccess: (codeResponse) => {
+            dispatch(profileSlice.actions.setUser(codeResponse))
+            dispatch(authorize())
+        },
         onError: (error) => setError(error)
     });
     return (
