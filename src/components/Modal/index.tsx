@@ -1,29 +1,33 @@
 import useOnClickOutside from '@/hooks/useClickOutside'
-import { useGoogleLogin } from '@react-oauth/google'
 import classNames from 'classnames'
 import React, { FC } from 'react'
 import { useCloseOnEscape } from './hooks/useCloseOnEscape'
 import style from './modal.module.scss'
-import { Button } from '../Button'
-import googleIcon from '@assets/icons/google-icon.svg'
 
 interface Props {
     modalIsOpened: boolean,
     setIsModalOpened: (isOpened: boolean) => void,
-    openModalOnElements: string[]
+    openModalOnElements: string[],
+    modalTitle: string
+    Body: React.FC
 }
 
-export const Modal: FC<Props> = ({ modalIsOpened, setIsModalOpened, openModalOnElements }) => {
+
+export const Modal: FC<Props> = ({
+    modalIsOpened, setIsModalOpened,
+    openModalOnElements,
+    modalTitle,
+    Body
+}) => {
     const modalRef = React.useRef<HTMLDivElement | null>(null)
 
-    useOnClickOutside({ callback: setIsModalOpened, ref: modalRef, exceptions: openModalOnElements })
+    useOnClickOutside({
+        callback: setIsModalOpened,
+        ref: modalRef,
+        exceptions: openModalOnElements
+    })
     const onKeyDown = useCloseOnEscape(modalRef, modalIsOpened, setIsModalOpened)
-
     const modalClassName = classNames(style.modal, modalIsOpened ? style.modal_opened : '')
-    const login = useGoogleLogin({
-        onSuccess: (codeResponse) => console.log(codeResponse),
-        onError: (error) => console.log('Login Failed:', error)
-    });
     return (
         <div className={modalClassName}>
             <div
@@ -33,9 +37,9 @@ export const Modal: FC<Props> = ({ modalIsOpened, setIsModalOpened, openModalOnE
                 onKeyDown={onKeyDown}
             >
                 <div className={style.modal__window__title}>
-                    Choose sign in option
+                    {modalTitle}
                 </div>
-                <Button icon={googleIcon} text='Sign in with Google' onClick={login} />
+                <Body />
             </div>
         </div>
     )

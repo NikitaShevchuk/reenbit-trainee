@@ -6,6 +6,7 @@ import searchIcon from '@assets/icons/search-icon.svg'
 import debounce from 'lodash.debounce'
 import React from "react"
 import { Input } from "../Input"
+import { Login } from '../Login'
 import { Modal } from '../Modal'
 
 export const Search = () => {
@@ -48,6 +49,8 @@ export const Search = () => {
                 modalIsOpened={modalIsOpened}
                 setIsModalOpened={setIsModalOpened}
                 openModalOnElements={['open-login']}
+                modalTitle='Choose a sign in option'
+                Body={Login}
             />
         </>
     )
