@@ -13,7 +13,7 @@ export const Profile = () => {
     return (
         <div className={classNames(style.profile, 'opacity')}>
             <Image imageUrl={profile.picture} variant='small' />
-            <h1 className='title small'>
+            <h1 className='title title-small'>
                 Your profile
             </h1>
             <Information
