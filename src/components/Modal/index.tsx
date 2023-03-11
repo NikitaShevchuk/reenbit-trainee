@@ -8,7 +8,7 @@ interface Props {
     modalIsOpened: boolean,
     setIsModalOpened: (isOpened: boolean) => void,
     openModalOnElements: string[],
-    modalTitle: string
+    modalTitle?: string
     Body: React.FC
 }
 
@@ -36,9 +36,12 @@ export const Modal: FC<Props> = ({
                 tabIndex={0}
                 onKeyDown={onKeyDown}
             >
-                <div className={style.modal__window__title}>
-                    {modalTitle}
-                </div>
+                {modalTitle
+                    ? <div className={style.modal__window__title}>
+                        {modalTitle}
+                    </div>
+                    : null
+                }
                 <Body />
             </div>
         </div>

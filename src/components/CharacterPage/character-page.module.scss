@@ -7,28 +7,6 @@
     padding-top: 71px;
     padding-bottom: 142px;
     color: var(--dark);
-    &__image {
-        display: flex;
-        justify-content: center;
-        img {
-            max-height: 300px;
-            min-height: 300px;
-            min-width: 300px;
-            max-width: 300px;
-            background-color: #c1c1c1;
-            border: 5px solid #F2F2F7;
-            border-radius: 150px;
-        }
-    }
-    &__title {
-        font-size: 4.8rem;
-        line-height: 4.8rem;
-        margin-top: 11px;
-        margin-bottom: 52px;
-        font-weight: 400;
-        width: 100%;
-        text-align: center;
-    }
     &__subtitle {
         color: var(--light-grey);
         font-weight: 500;
@@ -36,17 +14,5 @@
         margin-bottom: 50px;
         line-height: 2rem;
         text-align: center;
-    }
-    &__information {
-        padding: 13px 0;
-        margin: 0 16px;
-        border-bottom: 1px solid rgba(33, 33, 33, 0.08);
-        &__title {
-            font-size: 1.6rem;
-            line-height: 1.6rem;
-            font-weight: 700;
-            margin: 0 0 7px 0;
-            min-width: 20%;
-        }
     }
 }

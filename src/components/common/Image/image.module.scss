@@ -1,0 +1,25 @@
+.image {
+    display: flex;
+    justify-content: center;
+    img {
+        max-height: 300px;
+        min-height: 300px;
+        min-width: 300px;
+        max-width: 300px;
+        background-color: #c1c1c1;
+        border: 5px solid #F2F2F7;
+        border-radius: 150px;
+    }
+    &_large img {
+        max-height: 300px;
+        min-height: 300px;
+        min-width: 300px;
+        max-width: 300px;
+    }
+    &_small img {
+        max-height: 150px;
+        min-height: 150px;
+        min-width: 150px;
+        max-width: 150px;
+    }
+}

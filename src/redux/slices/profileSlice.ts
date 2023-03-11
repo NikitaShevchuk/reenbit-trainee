@@ -2,7 +2,7 @@ import { TokenResponse } from '@react-oauth/google';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { authorize } from '../thunks/authorize';
 
-interface Profile {
+export interface IProfile {
     id: string;
     email: string;
     verified_email: boolean;
@@ -15,7 +15,7 @@ interface Profile {
 const initialState = {
     isAuthorized: false as boolean,
     user: null as TokenResponse | null,
-    profile: null as Profile | null
+    profile: null as IProfile | null
 } as const;
 
 export const profileSlice = createSlice({

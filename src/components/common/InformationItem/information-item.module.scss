@@ -1,0 +1,12 @@
+.information {
+    padding: 13px 0;
+    margin: 0 16px;
+    border-bottom: 1px solid rgba(33, 33, 33, 0.08);
+    &__title {
+        font-size: 1.6rem;
+        line-height: 1.6rem;
+        font-weight: 700;
+        margin: 0 0 7px 0;
+        min-width: 20%;
+    }
+}

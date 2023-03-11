@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { searchStringSelector } from '@/redux/selectors/filter'
+import { isAuthorizedSelector } from '@/redux/selectors/profile'
 import { filterSlice } from '@/redux/slices/filterSlice'
 import loginIcon from "@assets/icons/login-icon.svg"
 import searchIcon from '@assets/icons/search-icon.svg'
@@ -8,12 +9,14 @@ import React from "react"
 import { Input } from "../Input"
 import { Login } from '../Login'
 import { Modal } from '../Modal'
+import { Profile } from '../Profile'
 
 export const Search = () => {
     const searchString = useAppSelector(searchStringSelector)
     const [searchFieldValue, setSearchFieldValue] = React.useState<string>(searchString)
     const [modalIsOpened, setIsModalOpened] = React.useState<boolean>(false)
     const dispatch = useAppDispatch()
+    const isAuthorized = useAppSelector(isAuthorizedSelector)
 
     const setFirstPageOnNewSearchRequest = (searchString: string) => {
         if (!searchString || searchString.length < 4) {
@@ -49,8 +52,8 @@ export const Search = () => {
                 modalIsOpened={modalIsOpened}
                 setIsModalOpened={setIsModalOpened}
                 openModalOnElements={['open-login']}
-                modalTitle='Choose a sign in option'
-                Body={Login}
+                modalTitle={isAuthorized ? undefined : 'Choose a sign in option'}
+                Body={isAuthorized ? Profile : Login}
             />
         </>
     )

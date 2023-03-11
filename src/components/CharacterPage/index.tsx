@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton"
 import { useParams } from "react-router-dom"
 import { ErrorPage } from "../ErrorPage"
 import { NavigationButton } from "../NavigationButton"
-import { Image } from './Image'
+import { Image } from '../common/Image'
 import { Information } from "./Information"
 import style from './character-page.module.scss'
 
@@ -21,7 +21,7 @@ export const CharacterPage = () => {
         <div className={classNames(style.character, 'opacity')}>
             <NavigationButton />
             <Image imageUrl={character?.image} />
-            <h1 className={style.character__title}>
+            <h1 className='title'>
                 {isLoading ? <Skeleton inline /> : character?.name}
             </h1>
             <div className={style.character__subtitle}>

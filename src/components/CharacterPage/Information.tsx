@@ -1,6 +1,6 @@
 import { Character, CharacterLocation } from "@/Types"
 import { FC } from "react"
-import { InformationItem } from "./InformationItem"
+import { InformationItem } from "../common/InformationItem"
 
 interface Props {
     character: Character | undefined
