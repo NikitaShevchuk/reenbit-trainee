@@ -1,14 +1,17 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { searchStringSelector } from '@/redux/selectors/filter'
 import { filterSlice } from '@/redux/slices/filterSlice'
+import loginIcon from "@assets/icons/login-icon.svg"
 import searchIcon from '@assets/icons/search-icon.svg'
 import debounce from 'lodash.debounce'
 import React from "react"
 import { Input } from "../Input"
+import { Modal } from '../Modal'
 
 export const Search = () => {
     const searchString = useAppSelector(searchStringSelector)
     const [searchFieldValue, setSearchFieldValue] = React.useState<string>(searchString)
+    const [modalIsOpened, setIsModalOpened] = React.useState<boolean>(false)
     const dispatch = useAppDispatch()
 
     const setFirstPageOnNewSearchRequest = (searchString: string) => {
@@ -30,14 +33,20 @@ export const Search = () => {
         setFirstPageOnNewSearchRequest(e.target.value)
         updateSearchString(e.target.value)
     }
-    const onIconClick = (e: React.MouseEvent<HTMLImageElement>) => { }
+    const onLoginIconClick = (e: React.MouseEvent<HTMLImageElement>) => { setIsModalOpened(true) }
 
     return (
-        <Input
-            value={searchFieldValue}
-            onChange={onChange}
-            placeHolder="Filter by name..."
-            startIcon={{ path: searchIcon, onClick: onIconClick }}
-        />
+        <>
+            <Input
+                value={searchFieldValue}
+                onChange={onChange}
+                placeHolder="Filter by name..."
+                startIcon={{ path: searchIcon, onClick: () => { } }}
+                endIcon={{ path: loginIcon, onClick: onLoginIconClick }}
+            />
+            <Modal
+                modalIsOpened={modalIsOpened}
+            />
+        </>
     )
 }
