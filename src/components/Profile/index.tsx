@@ -31,7 +31,7 @@ export const Profile = () => {
                 profile={profile}
             />
             <Button
-                buttonStyle={{ margin: '32px auto 0 auto' }}
+                buttonStyle={{ margin: '50px auto 0 auto' }}
                 onClick={logout}
                 icon={logoutIcon}
                 text='Logout'

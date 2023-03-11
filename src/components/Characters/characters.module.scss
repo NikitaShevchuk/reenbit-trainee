@@ -2,5 +2,11 @@
     margin: 0 auto 50px auto;
     display: grid;
     gap: 20px;
+    justify-items: center;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+@media (max-width: 548px) {
+    .characters {
+        grid-template-columns: repeat(auto-fit, minmax(0, 100%));
+    }
 }

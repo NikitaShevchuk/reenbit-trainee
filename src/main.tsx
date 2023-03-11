@@ -1,4 +1,5 @@
 import '@assets/css/index.scss'
+import '@assets/css/responsive.scss'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import 'normalize.css'
 import ReactDOM from 'react-dom/client'
