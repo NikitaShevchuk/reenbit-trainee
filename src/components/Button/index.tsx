@@ -5,15 +5,16 @@ interface Props {
     onClick: () => void
     text: string
     icon?: string
+    buttonStyle?: React.CSSProperties
 }
 
-export const Button: FC<Props> = ({ onClick, icon, text }) => {
+export const Button: FC<Props> = ({ onClick, icon, text, buttonStyle }) => {
     return (
-        <div onClick={onClick} className={style.button}>
+        <div onClick={onClick} style={buttonStyle || {}} className={style.button}>
             {icon && <img src={icon} alt="" className={style.button__icon} />}
-            <div className={style.button__text}>
+            <span className={style.button__text}>
                 {text}
-            </div>
+            </span>
         </div>
     )
 }

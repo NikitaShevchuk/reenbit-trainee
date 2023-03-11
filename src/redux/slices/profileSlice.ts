@@ -24,8 +24,13 @@ export const profileSlice = createSlice({
     reducers: {
         setAccessToken: (state, action: PayloadAction<string>) => {
             document.cookie = `access_token=${action.payload}`;
-            console.log(document.cookie);
             state.access_token = action.payload;
+        },
+        logout: (state) => {
+            document.cookie = `access_token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`;
+            state.isAuthorized = false;
+            state.access_token = null;
+            state.profile = null;
         }
     },
     extraReducers: (builder) => {
