@@ -42,10 +42,12 @@ export const Search = () => {
                 onChange={onChange}
                 placeHolder="Filter by name..."
                 startIcon={{ path: searchIcon, onClick: () => { } }}
-                endIcon={{ path: loginIcon, onClick: onLoginIconClick }}
+                endIcon={{ path: loginIcon, onClick: onLoginIconClick, className: 'open-login' }}
             />
             <Modal
                 modalIsOpened={modalIsOpened}
+                setIsModalOpened={setIsModalOpened}
+                openModalOnElements={['open-login']}
             />
         </>
     )
