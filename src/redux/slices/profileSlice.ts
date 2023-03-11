@@ -1,4 +1,3 @@
-import { TokenResponse } from '@react-oauth/google';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { authorize } from '../thunks/authorize';
 
@@ -14,7 +13,8 @@ export interface IProfile {
 
 const initialState = {
     isAuthorized: false as boolean,
-    user: null as TokenResponse | null,
+    isInitialized: false as boolean,
+    access_token: null as string | null,
     profile: null as IProfile | null
 } as const;
 
@@ -22,14 +22,22 @@ export const profileSlice = createSlice({
     name: 'profileSlice',
     initialState,
     reducers: {
-        setUser: (state, action: PayloadAction<TokenResponse>) => {
-            state.user = action.payload;
+        setAccessToken: (state, action: PayloadAction<string>) => {
+            document.cookie = `access_token=${action.payload}`;
+            console.log(document.cookie);
+            state.access_token = action.payload;
         }
     },
     extraReducers: (builder) => {
         builder.addCase(authorize.fulfilled, (state, action) => {
+            state.isInitialized = true;
             state.profile = action.payload;
             state.isAuthorized = true;
+        });
+        builder.addCase(authorize.rejected, (state) => {
+            state.isInitialized = true;
+            state.isAuthorized = false;
+            state.profile = null;
         });
     }
 });

@@ -1,8 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { profileSlice } from '../slices/profileSlice';
 import { RootState } from '../store';
 
 const baseURL = 'https://www.googleapis.com/oauth2/v2/userinfo';
+
+const getTokenFromCookie = (): string | undefined => {
+    let token: string | undefined = undefined;
+    if (document.cookie.includes('access_token=')) {
+        token = document.cookie.split('access_token=')[1];
+        if (token.includes(';')) token = token.split(';')[0];
+    }
+    return token;
+};
 
 const getHeaders = (access_token: string) => ({
     Authorization: `Bearer ${access_token}`,
@@ -11,12 +21,15 @@ const getHeaders = (access_token: string) => ({
 
 export const authorize = createAsyncThunk(
     'profile/authorize',
-    async (_, { getState, rejectWithValue }) => {
+    async (_, { getState, rejectWithValue, dispatch }) => {
+        const tokenInCookie = getTokenFromCookie();
+        if (tokenInCookie) dispatch(profileSlice.actions.setAccessToken(tokenInCookie));
+
         const state = getState() as RootState;
-        const access_token = state.profileSlice.user?.access_token;
+        const access_token = state.profileSlice.access_token;
+
         if (!access_token) {
-            rejectWithValue('Access token is required!');
-            return;
+            return rejectWithValue('Access token is required!');
         }
         const profile = await axios
             .get(`${baseURL}?access_token=${access_token}`, { headers: getHeaders(access_token) })

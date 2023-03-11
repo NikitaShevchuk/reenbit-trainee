@@ -14,7 +14,7 @@ export const Login = () => {
     const dispatch = useAppDispatch()
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => {
-            dispatch(profileSlice.actions.setUser(codeResponse))
+            dispatch(profileSlice.actions.setAccessToken(codeResponse.access_token))
             dispatch(authorize())
         },
         onError: (error) => setError(error)
