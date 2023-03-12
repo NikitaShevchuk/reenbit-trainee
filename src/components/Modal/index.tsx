@@ -1,4 +1,5 @@
 import useOnClickOutside from '@/hooks/useClickOutside'
+import closeIcon from '@assets/icons/close.svg'
 import classNames from 'classnames'
 import React, { FC } from 'react'
 import { useCloseOnEscape } from './hooks/useCloseOnEscape'
@@ -28,6 +29,7 @@ export const Modal: FC<Props> = ({
     })
     const onKeyDown = useCloseOnEscape(modalRef, modalIsOpened, setIsModalOpened)
     const modalClassName = classNames(style.modal, modalIsOpened ? style.modal_opened : '')
+    const closeModal = () => setIsModalOpened(false)
     return (
         <div className={modalClassName}>
             <div
@@ -36,6 +38,11 @@ export const Modal: FC<Props> = ({
                 tabIndex={0}
                 onKeyDown={onKeyDown}
             >
+                <img
+                    src={closeIcon}
+                    onClick={closeModal}
+                    className={style.modal__close}
+                />
                 {modalTitle
                     ? <div className={style.modal__window__title}>
                         {modalTitle}

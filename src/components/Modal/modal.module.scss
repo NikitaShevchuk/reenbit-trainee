@@ -24,6 +24,7 @@
         align-items: center;
         background: #fff;
         border-radius: 8px;
+        position: relative;
         box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2),
             0px 3px 4px rgba(0, 0, 0, 0.12),
             0px 2px 4px rgba(0, 0, 0, 0.14);
@@ -34,6 +35,14 @@
             text-align: center;
             color: var(--black);
         }
+    }
+    &__close {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        cursor: pointer;
     }
 }
 
