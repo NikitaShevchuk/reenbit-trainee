@@ -1,21 +1,20 @@
+import { checkFacebookAuthInLocalStorage } from './utils/checkFacebookAuthInLocalStorage';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { authorize } from '../thunks/authorize';
 
 export interface IProfile {
-    id: string;
     email: string;
-    verified_email: boolean;
     name: string;
-    given_name: string;
     picture: string;
-    locale: 'en';
 }
 
 const initialState = {
     isAuthorized: false as boolean,
     isInitialized: false as boolean,
     access_token: null as string | null,
-    profile: null as IProfile | null
+    profile: null as IProfile | null,
+    isAuthorizedWithFacebook: false as boolean,
+    isAuthorizedWithGoogle: false as boolean
 } as const;
 
 export const profileSlice = createSlice({
@@ -28,18 +27,43 @@ export const profileSlice = createSlice({
         },
         logout: (state) => {
             document.cookie = `access_token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`;
+            localStorage.setItem('isAuthorizedWithFacebook', 'false');
+            state.isAuthorizedWithFacebook = false;
+            state.isAuthorizedWithGoogle = false;
             state.isAuthorized = false;
             state.access_token = null;
             state.profile = null;
+        },
+        loginWithFacebook: (state, action: PayloadAction<IProfile>) => {
+            if (state.isAuthorizedWithGoogle) return;
+            localStorage.setItem('isAuthorizedWithFacebook', 'true');
+            state.isAuthorizedWithFacebook = true;
+            state.profile = {
+                name: action.payload.name,
+                email: action.payload.email,
+                picture: action.payload.picture
+            };
+            state.isAuthorized = true;
         }
     },
     extraReducers: (builder) => {
         builder.addCase(authorize.fulfilled, (state, action) => {
             state.isInitialized = true;
-            state.profile = action.payload;
+            state.isAuthorizedWithGoogle = true;
+            state.profile = {
+                name: action.payload.name,
+                email: action.payload.email,
+                picture: action.payload.picture
+            };
             state.isAuthorized = true;
         });
         builder.addCase(authorize.rejected, (state) => {
+            state.isAuthorizedWithGoogle = false;
+            if (checkFacebookAuthInLocalStorage() && !state.isAuthorizedWithGoogle) {
+                state.isAuthorizedWithFacebook = true;
+            } else {
+                state.isAuthorizedWithFacebook = false;
+            }
             state.isInitialized = true;
             state.isAuthorized = false;
             state.profile = null;
