@@ -31,14 +31,12 @@ export const Login = () => {
         // @ts-ignore
         if (response?.accessToken) {
             dispatch(
-                profileSlice.actions.loginWithFacebook(
-                    // @ts-ignore
-                    {
-                        name: response.name,
-                        email: response.email,
-                        picture: response.picture.data.url
-                    }
-                )
+                // eslint-disable-next-line prettier/prettier
+                profileSlice.actions.loginWithFacebook({// @ts-ignore
+                    name: response.name, // @ts-ignore
+                    email: response.email, // @ts-ignore
+                    picture: response.picture.data.url
+                })
             );
             // @ts-ignore
         } else setError(response.status);

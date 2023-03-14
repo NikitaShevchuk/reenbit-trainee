@@ -48,7 +48,6 @@ export const profileSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(authorize.fulfilled, (state, action) => {
-            console.log('resolved');
             state.isInitialized = true;
             state.isAuthorizedWithGoogle = true;
             state.profile = {
@@ -59,7 +58,6 @@ export const profileSlice = createSlice({
             state.isAuthorized = true;
         });
         builder.addCase(authorize.rejected, (state) => {
-            console.log('rejected');
             state.isAuthorizedWithGoogle = false;
             if (checkFacebookAuthInLocalStorage() && !state.isAuthorizedWithGoogle) {
                 state.isAuthorizedWithFacebook = true;
