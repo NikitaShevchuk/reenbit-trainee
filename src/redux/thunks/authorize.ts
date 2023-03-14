@@ -4,7 +4,7 @@ import axios from 'axios';
 import { profileSlice } from '../slices/profileSlice';
 import { RootState } from '../store';
 
-const baseURL = 'https://www.googleapis.com/oauth2/v2/userinfo';
+export const baseURL = 'https://www.googleapis.com/oauth2/v2/userinfo';
 
 const getTokenFromCookie = (): string | undefined => {
     let token: string | undefined;
