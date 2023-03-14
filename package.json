@@ -10,7 +10,8 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@react-oauth/google": "^0.8.0",
