@@ -1,4 +1,4 @@
-import { Logo } from "../Logo"
+import { Logo } from '../Logo';
 
 export const ErrorPage = () => {
     return (
@@ -8,5 +8,5 @@ export const ErrorPage = () => {
                 <h1>You've entered invalid url or an error ocurred while loading content.</h1>
             </div>
         </main>
-    )
-}
+    );
+};

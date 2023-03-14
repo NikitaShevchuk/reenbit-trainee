@@ -1,5 +1,5 @@
-import { Character, Info } from '@/Types';
 import { createApi, defaultSerializeQueryArgs, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Character, Info } from '@/Types';
 import { getCharactersThunkAction } from './utils/getCharactersThunkAction';
 import { mergeCharacters } from './utils/mergeCharacters';
 
@@ -30,10 +30,8 @@ export const characterApi = createApi({
 
             // sort characters by a name on the client side since api doesn't support sorting
             onQueryStarted: async (charactersParams, { dispatch, queryFulfilled }) => {
-                try {
-                    const { data } = await queryFulfilled;
-                    dispatch(getCharactersThunkAction(charactersParams, data));
-                } catch {}
+                const { data } = await queryFulfilled;
+                dispatch(getCharactersThunkAction(charactersParams, data));
             },
 
             forceRefetch({ currentArg, previousArg }) {

@@ -1,5 +1,5 @@
-import { Character, Info } from '@/Types';
 import React from 'react';
+import { Character, Info } from '@/Types';
 
 export const useSaveScrollHeigh = (
     characters: Info<Character[]> | undefined,

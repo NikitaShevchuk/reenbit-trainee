@@ -1,12 +1,11 @@
-import { Character, CharacterLocation } from "@/Types"
-import { FC } from "react"
-import { InformationItem } from "../common/InformationItem"
+import { FC } from 'react';
+import { Character, CharacterLocation } from '@/Types';
+import { InformationItem } from '../common/InformationItem';
 
 interface Props {
-    character: Character | undefined
-    isLoading: boolean
+    character: Character | undefined;
+    isLoading: boolean;
 }
-
 
 export const Information: FC<Props> = ({ character, isLoading }) => {
     const charactersInfo = [
@@ -14,18 +13,18 @@ export const Information: FC<Props> = ({ character, isLoading }) => {
         { title: 'Status' as string, value: character?.status as string },
         { title: 'Specie' as string, value: character?.species as string },
         { title: 'Origin' as string, value: character?.origin as string | CharacterLocation },
-        { title: 'Type' as string, value: character?.type as string },
-    ]
+        { title: 'Type' as string, value: character?.type as string }
+    ];
     return (
-        <>{
-            charactersInfo.map((character, index) => (
+        <>
+            {charactersInfo.map((character, index) => (
                 <InformationItem
                     key={character.title + String(index)}
                     title={character.title}
                     value={character.value}
                     isLoading={isLoading}
                 />
-            ))
-        }</>
-    )
-}
+            ))}
+        </>
+    );
+};

@@ -1,7 +1,7 @@
-import { useAppDispatch } from '@/redux/hooks';
-import { filterSlice } from '@/redux/slices/filterSlice';
 import debounce from 'lodash.debounce';
 import React from 'react';
+import { useAppDispatch } from '@/redux/hooks';
+import { filterSlice } from '@/redux/slices/filterSlice';
 import { useGetCharacters } from './useGetCharacters';
 import { useSaveScrollHeigh } from './useSaveScrollHeight';
 

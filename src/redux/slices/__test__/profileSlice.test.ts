@@ -1,5 +1,6 @@
 import { profileSlice } from '../profileSlice';
-import { setupStore } from './../../store';
+import { setupStore } from '../../store';
+
 let store = setupStore();
 
 beforeEach(() => {

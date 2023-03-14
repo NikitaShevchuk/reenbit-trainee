@@ -1,5 +1,5 @@
-import { checkFacebookAuthInLocalStorage } from './utils/checkFacebookAuthInLocalStorage';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { checkFacebookAuthInLocalStorage } from './utils/checkFacebookAuthInLocalStorage';
 import { authorize } from '../thunks/authorize';
 
 export interface IProfile {

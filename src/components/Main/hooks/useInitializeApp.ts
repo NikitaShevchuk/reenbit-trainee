@@ -1,7 +1,7 @@
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { isInitializedSelector } from '@/redux/selectors/profile';
 import { authorize } from '@/redux/thunks/authorize';
-import React from 'react';
 
 export const useInitializeApp = () => {
     const isInitialized = useAppSelector(isInitializedSelector);

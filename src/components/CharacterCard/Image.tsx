@@ -1,14 +1,14 @@
-import { FC } from 'react'
-import style from './character.module.scss'
+import { FC } from 'react';
+import style from './character.module.scss';
 
 interface Props {
-    image: string
+    image: string;
 }
 
 export const Image: FC<Props> = ({ image }) => {
     return (
         <div className={style.character__image}>
-            <img src={image} />
+            <img src={image} alt="Profile" />
         </div>
-    )
-}
+    );
+};

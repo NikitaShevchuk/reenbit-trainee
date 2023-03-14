@@ -18,7 +18,7 @@ export const filterSlice = createSlice({
             state.searchString = action.payload;
         },
         remountScrollComponent(state) {
-            ++state.scrollComponentKey;
+            state.scrollComponentKey += state.scrollComponentKey;
         }
     }
 });
