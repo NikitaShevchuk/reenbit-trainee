@@ -6,11 +6,12 @@ import FacebookLogin, {
     ReactFacebookLoginInfo
 } from 'react-facebook-login';
 import { authorize } from '@/redux/thunks/authorize';
-import { profileSlice } from '@/redux/slices/profileSlice';
+import { IProfile, profileSlice } from '@/redux/slices/profileSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { Button } from '../Button';
 import './facebook-button.scss';
 import style from './login.module.scss';
+import { createProfileFromResponse } from './utils/createProfileFromResponse';
 
 type ErrorType = Pick<TokenResponse, 'error' | 'error_description' | 'error_uri'> | null;
 
@@ -31,12 +32,9 @@ export const Login = () => {
         // @ts-ignore
         if (response?.accessToken) {
             dispatch(
-                // eslint-disable-next-line prettier/prettier
-                profileSlice.actions.loginWithFacebook({// @ts-ignore
-                    name: response.name, // @ts-ignore
-                    email: response.email, // @ts-ignore
-                    picture: response.picture.data.url
-                })
+                profileSlice.actions.loginWithFacebook(
+                    createProfileFromResponse(response as IProfile)
+                )
             );
             // @ts-ignore
         } else setError(response.status);
