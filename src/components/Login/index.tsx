@@ -51,7 +51,7 @@ export const Login = () => {
                 icon="fa-facebook"
                 containerStyle={{
                     display: 'block',
-                    width: window.innerWidth > 680 ? '45%' : '80%'
+                    width: window.innerWidth > 680 ? '42%' : '80%'
                 }}
             />
             {error && (
