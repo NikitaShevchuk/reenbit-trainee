@@ -15,6 +15,7 @@ describe('Profile slice', () => {
 
     it('Should clear all authorization data from state', () => {
         store.dispatch(profileSlice.actions.logout());
+
         expect(store.getState().profileSlice.isAuthorizedWithFacebook).toBe(false);
         expect(store.getState().profileSlice.isAuthorizedWithGoogle).toBe(false);
         expect(store.getState().profileSlice.isAuthorized).toBe(false);
