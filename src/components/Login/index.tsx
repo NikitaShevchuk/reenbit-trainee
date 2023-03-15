@@ -17,10 +17,17 @@ type ErrorType = Pick<TokenResponse, 'error' | 'error_description' | 'error_uri'
 
 type FacebookResponse = ReactFacebookLoginInfo | ReactFacebookFailureResponse;
 
+const facebookButtonStyles = {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center'
+};
+
 export const Login = () => {
     const [error, setError] = React.useState<ErrorType>(null);
     const dispatch = useAppDispatch();
     const { isAuthorizedWithFacebook } = useAppSelector((state) => state.profileSlice);
+
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => {
             dispatch(profileSlice.actions.setAccessToken(codeResponse.access_token));
@@ -28,6 +35,7 @@ export const Login = () => {
         },
         onError: (error) => setError(error)
     });
+
     const facebookCallback = (response: FacebookResponse) => {
         // @ts-ignore
         if (response?.accessToken) {
@@ -49,15 +57,10 @@ export const Login = () => {
                 callback={facebookCallback}
                 autoLoad={isAuthorizedWithFacebook}
                 icon="fa-facebook"
-                containerStyle={{
-                    display: 'block',
-                    width: window.innerWidth > 680 ? '42%' : '80%'
-                }}
+                containerStyle={facebookButtonStyles}
             />
             {error && (
-                <div className={style.modal__error}>
-                    {error?.error_description || 'Login failed'}
-                </div>
+                <div className={style.error}>{error?.error_description || 'Login failed'}</div>
             )}
         </>
     );

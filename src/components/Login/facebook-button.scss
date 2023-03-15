@@ -10,7 +10,8 @@
     margin-top: 20px;
     cursor: pointer;
     background: #fff;
-    width: 100%;
+    width: 30%;
+    box-sizing: content-box;
     font-family: inherit;
     text-transform: none;
     font-size: 1.6rem;
@@ -34,5 +35,10 @@
         margin: auto;
         cursor: pointer;
         left: 20px;
+    }
+}
+@media (max-width: 680px){
+    #root .kep-login-facebook {
+        width: 60%;
     }
 }
