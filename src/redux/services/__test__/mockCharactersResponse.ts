@@ -4,7 +4,7 @@ export const mockCharactersResponse: Info<Character[]> = {
     info: { count: 1, next: '', pages: 2, prev: '' },
     results: [
         {
-            name: 'A',
+            name: 'B',
             created: '',
             episode: [''],
             gender: 'Male',
@@ -18,7 +18,7 @@ export const mockCharactersResponse: Info<Character[]> = {
             url: 'url'
         },
         {
-            name: 'B',
+            name: 'A',
             created: '',
             episode: [''],
             gender: 'Male',

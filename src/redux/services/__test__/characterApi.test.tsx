@@ -34,10 +34,16 @@ describe('Character api', () => {
         expect(response.data).toBeUndefined();
         expect(response.isLoading).toBe(true);
 
-        await waitForNextUpdate({ timeout: 1000 });
+        await waitForNextUpdate({ timeout: 500 });
 
         const nextResponse = result.current;
-        expect(nextResponse.data).not.toBeUndefined();
+        const results = nextResponse.data?.results;
+        const mockResponseResults = mockCharactersResponse?.results;
+
+        // should be sorted by name, so name 'A' from response should be first
+        expect(results && results[0].name).toStrictEqual(
+            mockResponseResults && mockResponseResults[1].name
+        );
         expect(nextResponse.isSuccess).toBe(true);
         expect(nextResponse.isLoading).toBe(false);
     });
